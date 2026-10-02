@@ -1,0 +1,25 @@
+{
+    "name": "cinema/booking-ticket-movie",
+    "description": "Cinema booking website",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "jenssegers/blade": "^1.4",
+        "illuminate/view": "^8.0",
+        "vlucas/phpdotenv": "^5.6",
+        "chillerlan/php-qrcode": "^4.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "classmap": [
+            "app/Helpers/"
+        ]
+    },
+    "config": {
+        "platform": {
+            "php": "8.0.0"
+        }
+    }
+}

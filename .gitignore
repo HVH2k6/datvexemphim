@@ -1,0 +1,9 @@
+/vendor/
+.env
+/storage/framework/views/
+storage/logs/*.log
+storage/*.lock
+storage/uploads/*
+!storage/uploads/.gitkeep
+public/images/uploads/*
+!public/images/uploads/.gitkeep

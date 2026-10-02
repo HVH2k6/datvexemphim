@@ -1,0 +1,28 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# Thư mục cha (.htaccess ở gốc dự án) chặn mọi truy cập; chỉ mở lại cho public/
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order allow,deny
+    Allow from all
+</IfModule>
+
+# Không phục vụ file ẩn / file cấu hình lỡ để trong public/
+<FilesMatch "^\.|\.(env|ini|log|sql|lock|bak|sh|ps1)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Giữ header Authorization cho PHP (webhook SePay dùng "Authorization: Apikey ...")
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^ index.php [L]
+</IfModule>

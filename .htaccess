@@ -1,0 +1,10 @@
+# Chặn truy cập trực tiếp thư mục dự án (.env, storage/, tests/, schema.sql...).
+# Chỉ public/ được phục vụ: vhost trỏ DocumentRoot tới public/, và public/.htaccess mở lại quyền.
+# Cần khi web server dùng thư mục cha (vd Laragon default host http://localhost/booking-ticket-movie/).
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>
+<IfModule !mod_authz_core.c>
+    Order deny,allow
+    Deny from all
+</IfModule>

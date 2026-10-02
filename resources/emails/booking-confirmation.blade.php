@@ -1,0 +1,1 @@
+{{-- emails.booking-confirmation --}}
